@@ -1,0 +1,27 @@
+{
+  "name": "tweetbook-lambda",
+  "version": "0.0.1",
+  "description": "Very simple tweet bot.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ntalbs/tweetbook-lambda.git"
+  },
+  "keywords": [
+    "lambda",
+    "tweet",
+    "dynamodb"
+  ],
+  "author": "ntalbs",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ntalbs/tweetbook-lambda/issues"
+  },
+  "homepage": "https://github.com/ntalbs/tweetbook-lambda#readme",
+  "dependencies": {
+    "twit": "^2.2.11"
+  }
+}
