@@ -29,27 +29,17 @@ async function getQuote(id) {
 
 function tweet(quote) {
   let msg = `${quote.msg}\n${quote.src}`
-  T.post('statuses/update', {status: msg}, (err, res) => {
-    if (err) {
-      console.error('--->>>')
-      console.error(msg)
-      console.error(quote)
-      console.dir(err)
-    } else {
-      console.log('tweet succeed at ', new Date())
-      console.log(res.text)
-    }
-  })
+  return T.post('statuses/update', {status: msg})
 }
 
-exports.handler = async(event) => {
-  let quote = await getQuote(random())
-
-  tweet(quote)
+exports.handler = async (event) => {
+  let q = await getQuote(random())
+  let t = await tweet(q)
 
   const response = {
     statusCode: 200,
-    body: quote
+    quote: q,
+    tweetId: t.data.id
   }
 
   return response;
