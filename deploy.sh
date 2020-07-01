@@ -10,6 +10,7 @@
 # The IAM role used here is created manually.
 
 LAMBDA_FUNCTION_NAME='tweet-book'
+DESCRIPTION='Very simple lambda function that fetch a quote from DynamoDB and tweet it.'
 
 function update-lambda {
     aws lambda update-function-code --function-name $LAMBDA_FUNCTION_NAME --zip-file fileb://function.zip
@@ -18,6 +19,7 @@ function update-lambda {
 function create-lambda {
     aws lambda create-function \
         --function-name $LAMBDA_FUNCTION_NAME \
+        --description "$DESCRIPTION" \
         --runtime nodejs12.x \
         --zip-file fileb://function.zip \
         --handler index.handler \
@@ -29,7 +31,7 @@ zip -r function.zip . -x "*.sh" -x ".git/*" -x "README.md" -x "*.zip"
 update-lambda
 
 if [ $? -ne 0 ]; then
-    echo "Create function $LAMBDA_FUNCTION_NAME"
+    echo -e "\e[33mCreate function $LAMBDA_FUNCTION_NAME\e[0m"
     create-lambda
 fi
 
